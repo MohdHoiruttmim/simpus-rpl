@@ -63,7 +63,7 @@
                                     </td>
                                     <td>
                                         <div>
-                                            <img src="../assets/img/team-2.jpg" class="avatar avatar-sm me-3">
+                                            <img src="../assets/img/gender/male.png" class="avatar avatar-sm me-3">
                                         </div>
                                     </td>
                                     <td class="text-center">
@@ -94,7 +94,7 @@
                                     </td>
                                     <td>
                                         <div>
-                                            <img src="/assets/img/team-1.jpg" class="avatar avatar-sm me-3">
+                                            <img src="../assets/img/gender/female.png" class="avatar avatar-sm me-3">
                                         </div>
                                     </td>
                                     <td class="text-center">
@@ -125,7 +125,7 @@
                                     </td>
                                     <td>
                                         <div>
-                                            <img src="/assets/img/team-3.jpg" class="avatar avatar-sm me-3">
+                                            <img src="../assets/img/gender/male.png" class="avatar avatar-sm me-3">
                                         </div>
                                     </td>
                                     <td class="text-center">
@@ -156,7 +156,7 @@
                                     </td>
                                     <td>
                                         <div>
-                                            <img src="/assets/img/team-4.jpg" class="avatar avatar-sm me-3">
+                                            <img src="../assets/img/gender/male.png" class="avatar avatar-sm me-3">
                                         </div>
                                     </td>
                                     <td class="text-center">
@@ -187,7 +187,7 @@
                                     </td>
                                     <td>
                                         <div>
-                                            <img src="/assets/img/marie.jpg" class="avatar avatar-sm me-3">
+                                            <img src="../assets/img/gender/female.png" class="avatar avatar-sm me-3">
                                         </div>
                                     </td>
                                     <td class="text-center">

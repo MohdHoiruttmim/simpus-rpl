@@ -44,6 +44,10 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/userDashboard', function () {
 			return view('welcome');
 		})->name('userDashboard');
+
+		Route::get('checkup', function () {
+			return view('checkup-register');
+		})->name('checkup-register');
 	});
 
     Route::get('/', [HomeController::class, 'home']);
