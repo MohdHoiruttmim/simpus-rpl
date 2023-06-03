@@ -17,9 +17,10 @@
                 <div class="card-header pb-0">
                     <div class="d-flex flex-row justify-content-between">
                         <div>
-                            <h5 class="mb-0">All Users</h5>
+                            <h3 class="mb-0">All Users</h3>
                         </div>
-                        <a href="#" class="btn bg-gradient-success btn-sm mb-0" type="button">+&nbsp; New User</a>
+                        <a href="{{ route('user-add') }}" class="btn bg-gradient-success btn-sm mb-0"
+                            type="button">+&nbsp; New User</a>
                     </div>
                 </div>
                 <div class="card-body px-0 pt-0 pb-2">

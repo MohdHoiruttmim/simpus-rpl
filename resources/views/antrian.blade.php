@@ -3,12 +3,27 @@
 @section('content')
 
 <main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ">
-  <div class="container-fluid py-4">
+  <div class="container-fluid">
     <div class="row">
       <div class="col-12">
+        <div class="col-md-6">
+          <div class="form-group d-flex align-items-center">
+            <div class="input-group">
+              <select name="poli" class="form-control mb-2">
+                <option value="" disabled selected>Filter poli</option>
+                <option value="">Semua Poli</option>
+                <option value="mata">Mata</option>
+              </select>
+            </div>
+            <div class="input-group mb-2">
+              <input class="form-control" placeholder="Search ..." type="text">
+            </div>
+            <button type="submit" class="btn ms-2">Cari</button>
+          </div>
+        </div>
         <div class="card mb-4">
           <div class="card-header pb-0">
-            <h6>Daftar Antrian</h6>
+            <h3>Antrian</h3>
           </div>
           <div class="card-body px-0 pt-0 pb-2">
             <div class="table-responsive p-0">
@@ -48,7 +63,8 @@
                       <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
                     </td>
                     <td class="align-middle">
-                      <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
+                      <a href="{{ route('tables-detail', Auth::user()->id) }}"
+                        class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
                         data-original-title="Edit user">
                         Edit
                       </a>
@@ -106,7 +122,8 @@
                       <span class="text-secondary text-xs font-weight-bold">19/09/17</span>
                     </td>
                     <td class="align-middle">
-                      <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
+                      <a href="{{ route('tables-detail', Auth::user()->id) }}"
+                        class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
                         data-original-title="Edit user">
                         Edit
                       </a>
