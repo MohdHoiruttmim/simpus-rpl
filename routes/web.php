@@ -31,20 +31,49 @@ Route::group(['middleware' => 'auth'], function () {
 			return view('dashboard');
 		})->name('adminDashboard');
 
+		Route::get('user-management', function () {
+			return view('laravel-examples/user-management');
+		})->name('user-management');
+		Route::get('user-management/add', function () {
+			return view('laravel-examples/user-add');
+		})->name('user-add');
+
 		Route::get('billing', function () {
 			return view('billing');
 		})->name('billing');
 
+		Route::get('tables', function () {
+			return view('antrian');
+		})->name('tables');
+		Route::get('tables/{id}', function () {
+			return view('antrian-detail');
+		})->name('tables-detail');
+
 		Route::get('history', function () {
 			return view('history');
 		})->name('history');
+		Route::get('history/{id}', function () {
+			return view('history-detail');
+		})->name('history-detail');
 	});
 
 	Route::group(['middleware' => 'role:user'], function() {
 		Route::get('/userDashboard', function () {
 			return view('welcome');
 		})->name('userDashboard');
+
+		Route::get('checkup', function () {
+			return view('checkup-register');
+		})->name('checkup-register');
 	});
+
+	Route::get('conversation', function () {
+		return view('conversation');
+	})->name('conversation');
+
+	Route::get('checkup/daftar', function () {
+		return view('antrian-daftar');
+	})->name('tables-register');
 
     Route::get('/', [HomeController::class, 'home']);
 	Route::get('dashboard', function () {
@@ -54,18 +83,6 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('profile', function () {
 		return view('profile');
 	})->name('profile');
-
-	Route::get('rtl', function () {
-		return view('rtl');
-	})->name('rtl');
-
-	Route::get('user-management', function () {
-		return view('laravel-examples/user-management');
-	})->name('user-management');
-
-	Route::get('tables', function () {
-		return view('tables');
-	})->name('tables');
 
     Route::get('virtual-reality', function () {
 		return view('virtual-reality');

@@ -18,13 +18,14 @@ class RegisterController extends Controller
     {
         $attributes = request()->validate([
             'name' => ['required', 'max:50'],
+            'username' => ['required', 'max:50', Rule::unique('users', 'username')],
             'email' => ['required', 'email', 'max:50', Rule::unique('users', 'email')],
             // role default is user
             'password' => ['required', 'min:5', 'max:20'],
             'agreement' => ['accepted']
         ]);
         $attributes['password'] = bcrypt($attributes['password'] );
-        $attributes['role'] = 'admin';
+        $attributes['role'] = 'user';
 
         session()->flash('success', 'Your account has been created.');
         $user = User::create($attributes);

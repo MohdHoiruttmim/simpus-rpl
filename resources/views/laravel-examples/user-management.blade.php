@@ -17,9 +17,10 @@
                 <div class="card-header pb-0">
                     <div class="d-flex flex-row justify-content-between">
                         <div>
-                            <h5 class="mb-0">All Users</h5>
+                            <h3 class="mb-0">All Users</h3>
                         </div>
-                        <a href="#" class="btn bg-gradient-success btn-sm mb-0" type="button">+&nbsp; New User</a>
+                        <a href="{{ route('user-add') }}" class="btn bg-gradient-success btn-sm mb-0"
+                            type="button">+&nbsp; New User</a>
                     </div>
                 </div>
                 <div class="card-body px-0 pt-0 pb-2">
@@ -63,7 +64,7 @@
                                     </td>
                                     <td>
                                         <div>
-                                            <img src="../assets/img/team-2.jpg" class="avatar avatar-sm me-3">
+                                            <img src="../assets/img/gender/male.png" class="avatar avatar-sm me-3">
                                         </div>
                                     </td>
                                     <td class="text-center">
@@ -94,7 +95,7 @@
                                     </td>
                                     <td>
                                         <div>
-                                            <img src="/assets/img/team-1.jpg" class="avatar avatar-sm me-3">
+                                            <img src="../assets/img/gender/female.png" class="avatar avatar-sm me-3">
                                         </div>
                                     </td>
                                     <td class="text-center">
@@ -125,7 +126,7 @@
                                     </td>
                                     <td>
                                         <div>
-                                            <img src="/assets/img/team-3.jpg" class="avatar avatar-sm me-3">
+                                            <img src="../assets/img/gender/male.png" class="avatar avatar-sm me-3">
                                         </div>
                                     </td>
                                     <td class="text-center">
@@ -156,7 +157,7 @@
                                     </td>
                                     <td>
                                         <div>
-                                            <img src="/assets/img/team-4.jpg" class="avatar avatar-sm me-3">
+                                            <img src="../assets/img/gender/male.png" class="avatar avatar-sm me-3">
                                         </div>
                                     </td>
                                     <td class="text-center">
@@ -187,7 +188,7 @@
                                     </td>
                                     <td>
                                         <div>
-                                            <img src="/assets/img/marie.jpg" class="avatar avatar-sm me-3">
+                                            <img src="../assets/img/gender/female.png" class="avatar avatar-sm me-3">
                                         </div>
                                     </td>
                                     <td class="text-center">
