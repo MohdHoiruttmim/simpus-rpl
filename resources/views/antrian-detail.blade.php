@@ -6,40 +6,46 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-6 card shadow p-4">
-        <h3>Rekam Medis Pasien</h3>
-        <form>
+        <h3>Form Pendaftaran Checkup</h3>
+        <form method="" action="{{ route('antrian-store') }}">
           <div class="form-group">
-            <label for="example-text-input" class="form-control-label">NIK</label>
-            <input class="form-control" type="text" id="example-text-input">
+            <label for="nik" class="form-control-label">NIK</label>
+            <input class="form-control" type="text" id="nik" name="nik" value="{{ $antrian->nik }}" required>
           </div>
           <div class="form-group">
-            <label for="example-text-input" class="form-control-label">Nama</label>
-            <input class="form-control" type="text" id="example-text-input">
+            <label for="nama" class="form-control-label">Nama</label>
+            <input class="form-control" type="text" id="nama" name="nama" value="{{ $antrian->nama }}" required>
           </div>
           <div class="form-group">
-            <label for="example-text-input" class="form-control-label">No. BPJS <span class="text-danger">* jika
+            <label for="no-bpjs" class="form-control-label">No. BPJS <span class="text-danger">* jika
                 ada</span></label>
-            <input class="form-control" type="text" id="example-text-input">
+            <input class="form-control" type="text" id="no-bpjs" value="{{ $antrian->no_bpjs }}" name="no_bpjs">
+          </div>
+          <label for="poli" class="form-control-label">Poli</label>
+          <div class="input-group">
+            <select name="poli" class="form-control mb-2">
+              <option value="" disabled selected>Pilih Poli</option>
+              <option value="mata" {{ $antrian->poli == 'mata' ? 'selected' : '' }}>Mata</option>
+              <option value="kesehatan ibu anak" {{ $antrian->poli == 'kesehatan ibu anak' ? 'selected' : ''
+                }}>Kesehatan Ibu dan Anak</option>
+              <option value="gigi" {{ $antrian->poli == 'gigi' ? 'selected' : '' }}>Gigi</option>
+              <option value="umum" {{ $antrian->poli == 'umum' ? 'selected' : '' }}>Umum</option>
+            </select>
           </div>
           <div class="form-group">
-            <label for="example-text-input" class="form-control-label">Alamat</label>
-            <input class="form-control" type="text" id="example-text-input">
+            <label for="address" class="form-control-label">Alamat</label>
+            <textarea class="form-control" id="address" name="alamat" required>{{ $antrian->alamat }}</textarea>
           </div>
-          <div class="form-group">
-            <label for="example-tel-input" class="form-control-label">No. Telp</label>
-            <input class="form-control" type="tel" value="40-(770)-888-444" id="example-tel-input">
+          <label for="no-tlp">No. Telepon</label>
+          <div class="input-group mb-4">
+            <span class="input-group-text">+62</span>
+            <input class="form-control" placeholder="834-(1234)-7853" type="text" id="no-tlp" name="no_telp"
+              value="{{ $antrian->no_telp }}" required>
           </div>
           <div class="form-group">
             <label for="example-datetime-local-input" class="form-control-label">tanggal Periksa</label>
-            <input class="form-control" type="datetime-local" value="2018-11-23T10:30:00"
+            <input class="form-control" type="datetime-local" value="{{ $antrian->created_at }}"
               id="example-datetime-local-input">
-          </div>
-          <div class="input-group">
-            <select name="poli" class="form-control mb-2">
-              <option value="" disabled selected>Poli</option>
-              <option value="">Semua Poli</option>
-              <option value="mata">Mata</option>
-            </select>
           </div>
           <div class="form-group">
             <label for="exampleFormControlTextarea1">Diagnosa</label>
@@ -47,7 +53,7 @@
           </div>
           <div class="col">
             <button class="btn btn-success" type="submit">Selesai</button>
-            <a href="{{ route('tables') }}" class="btn btn-danger ms-2">Hapus</a>
+            <a href="{{ route('antrian') }}" class="btn btn-danger ms-2">Hapus</a>
           </div>
         </form>
       </div>

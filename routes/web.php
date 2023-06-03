@@ -6,6 +6,8 @@ use App\Http\Controllers\InfoUserController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ResetController;
 use App\Http\Controllers\SessionsController;
+use App\Http\Controllers\CheckupController;
+use App\Http\Controllers\AntrianController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Route;
@@ -26,6 +28,7 @@ use App\Http\Controllers\Auth\RedirectAuthenticatedUsersController;
 Route::group(['middleware' => 'auth'], function () {
 	Route::get("/redirectAuthenticatedUsers", [RedirectAuthenticatedUsersController::class, "home"]);
 
+
 	Route::group(['middleware' => 'role:admin'], function() {
 		Route::get('/adminDashboard', function () {
 			return view('dashboard');
@@ -42,12 +45,14 @@ Route::group(['middleware' => 'auth'], function () {
 			return view('billing');
 		})->name('billing');
 
-		Route::get('tables', function () {
-			return view('antrian');
-		})->name('tables');
-		Route::get('tables/{id}', function () {
-			return view('antrian-detail');
-		})->name('tables-detail');
+		// CheckupController
+		Route::get('antrian',
+		[AntrianController::class, "index"])
+		->name('antrian');
+
+		Route::get('antrian/{id}',
+		[AntrianController::class, "show"])
+		->name('antrian-detail');
 
 		Route::get('history', function () {
 			return view('history');
@@ -57,23 +62,29 @@ Route::group(['middleware' => 'auth'], function () {
 		})->name('history-detail');
 	});
 
+
+
 	Route::group(['middleware' => 'role:user'], function() {
 		Route::get('/userDashboard', function () {
 			return view('welcome');
 		})->name('userDashboard');
 
-		Route::get('checkup', function () {
-			return view('checkup-register');
-		})->name('checkup-register');
+		// Route::get('checkup', function () {
+		// 	return view('checkup-register');
+		// })->name('checkup-register');
+		Route::get('checkup', [AntrianController::class, 'index_user'])->name('checkup-register');
 	});
 
 	Route::get('conversation', function () {
 		return view('conversation');
 	})->name('conversation');
 
-	Route::get('checkup/daftar', function () {
+	// antrian user dan admin
+	Route::get('antrian-daftar', function () {
 		return view('antrian-daftar');
-	})->name('tables-register');
+	})->name('antrian-register');
+	Route::post('antrian',
+	[AntrianController::class, "store"])->name('antrian-store');
 
     Route::get('/', [HomeController::class, 'home']);
 	Route::get('dashboard', function () {
@@ -84,17 +95,17 @@ Route::group(['middleware' => 'auth'], function () {
 		return view('profile');
 	})->name('profile');
 
-    Route::get('virtual-reality', function () {
-		return view('virtual-reality');
-	})->name('virtual-reality');
+  //   Route::get('virtual-reality', function () {
+	// 	return view('virtual-reality');
+	// })->name('virtual-reality');
 
-    Route::get('static-sign-in', function () {
-		return view('static-sign-in');
-	})->name('sign-in');
+  //   Route::get('static-sign-in', function () {
+	// 	return view('static-sign-in');
+	// })->name('sign-in');
 
-    Route::get('static-sign-up', function () {
-		return view('static-sign-up');
-	})->name('sign-up');
+  //   Route::get('static-sign-up', function () {
+	// 	return view('static-sign-up');
+	// })->name('sign-up');
 
     Route::get('/logout', [SessionsController::class, 'destroy']);
 	Route::get('/user-profile', [InfoUserController::class, 'create']);
