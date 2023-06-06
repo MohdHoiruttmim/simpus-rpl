@@ -50,5 +50,13 @@
     </div>
   </div>
 </main>
+<script>
+  /*
+  window.print();
+  setTimeout(function () {
+    window.location.href = '{{ route("checkup-register") }}';
+  }, 1000);
+  */
+</script>
 
 @endsection

@@ -7,7 +7,8 @@
     <div class="row">
       <div class="col-md-6 card shadow p-4">
         <h3>Form Pendaftaran Checkup</h3>
-        <form method="" action="{{ route('antrian-store') }}">
+        <form method="POST" action="{{ route('checkup-history-store', $antrian->id) }}">
+          @csrf
           <div class="form-group">
             <label for="nik" class="form-control-label">NIK</label>
             <input class="form-control" type="text" id="nik" name="nik" value="{{ $antrian->nik }}" required>
@@ -48,8 +49,8 @@
               id="example-datetime-local-input">
           </div>
           <div class="form-group">
-            <label for="exampleFormControlTextarea1">Diagnosa</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <label for="Diagnosa">Diagnosa</label>
+            <textarea class="form-control" id="Diagnosa" rows="3" name="diagnosa"></textarea>
           </div>
           <div class="col">
             <button class="btn btn-success" type="submit">Selesai</button>

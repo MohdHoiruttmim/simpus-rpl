@@ -44,8 +44,8 @@
             <h6 class="mb-0">Riwayat</h6>
           </div>
           <div class="col-6 text-end">
-            <button class="btn btn-outline-primary btn-sm mb-0" data-bs-toggle="modal"
-              data-bs-target="#exampleModal">View All</button>
+            <button class="btn btn-outline-primary btn-sm mb-0" data-bs-toggle="modal" data-bs-target="#exampleModal"
+              id="print">View All</button>
           </div>
         </div>
       </div>
@@ -59,8 +59,9 @@
             </div>
             <div class="d-flex align-items-center text-sm">
               Periksa
-              <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4"><i class="fas fa-file-pdf text-lg me-1"></i>
-                PDF</button>
+              <a href="{{ route('card', $r->id) }}" class="btn btn-link text-dark text-sm mb-0 px-0 ms-4"><i
+                  class="fas fa-file-pdf text-lg me-1"></i>
+                PDF</a>
             </div>
           </li>
           @endforeach
@@ -91,5 +92,14 @@
     </div>
   </div>
 </div>
+
+<script>
+  /*
+  const card = document.querySelector('#print');
+  card.addEventListener('click', function () {
+    window.location.href = "{{ route('antrian-register') }}";
+  })
+  */
+</script>
 
 @endsection

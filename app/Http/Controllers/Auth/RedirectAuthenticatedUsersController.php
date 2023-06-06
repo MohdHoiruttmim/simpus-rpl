@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
             return redirect('/adminDashboard');
         }
         elseif(auth()->user()->role == 'user'){
-            return redirect('/userDashboard');
+            return redirect('/');
         }
         elseif(auth()->user()->role == 'guest'){
             return redirect('/guestDashboard');

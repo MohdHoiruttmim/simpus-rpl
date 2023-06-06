@@ -49,17 +49,20 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('antrian',
 		[AntrianController::class, "index"])
 		->name('antrian');
-
 		Route::get('antrian/{id}',
 		[AntrianController::class, "show"])
 		->name('antrian-detail');
 
-		Route::get('history', function () {
-			return view('history');
-		})->name('history');
-		Route::get('history/{id}', function () {
-			return view('history-detail');
-		})->name('history-detail');
+		Route::get('checkup-history',
+		[CheckupController::class, "index"])
+		->name('history');
+		Route::get('checkup-history/{id}',
+		[CheckupController::class, "show"])
+		->name('checkup-history-show');
+		Route::post('checkup-history/{id}',
+		[CheckupController::class, "store"])
+		->name('checkup-history-store');
+
 	});
 
 
@@ -69,10 +72,15 @@ Route::group(['middleware' => 'auth'], function () {
 			return view('welcome');
 		})->name('userDashboard');
 
-		// Route::get('checkup', function () {
-		// 	return view('checkup-register');
-		// })->name('checkup-register');
-		Route::get('checkup', [AntrianController::class, 'index_user'])->name('checkup-register');
+		Route::get('checkup',
+		[AntrianController::class, 'index_user'])
+		->name('checkup-register');
+		Route::get('checkup/log',
+		[CheckupController::class, 'log'])
+		->name('checkup-log');
+		Route::get('checkup/{id}',
+		[CheckupController::class, 'show'])
+		->name('checkup-log-show');
 	});
 
 	Route::get('conversation', function () {
@@ -84,7 +92,12 @@ Route::group(['middleware' => 'auth'], function () {
 		return view('antrian-daftar');
 	})->name('antrian-register');
 	Route::post('antrian',
-	[AntrianController::class, "store"])->name('antrian-store');
+	[AntrianController::class, "store"])
+	->name('antrian-store');
+
+	Route::get('card/{id}',
+	[AntrianController::class, "card"])
+	->name('card');
 
     Route::get('/', [HomeController::class, 'home']);
 	Route::get('dashboard', function () {

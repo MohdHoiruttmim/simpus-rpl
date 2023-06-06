@@ -10,7 +10,9 @@ class AntrianController extends Controller
 {
     public function index()
     {
-        $antrians = Antrian::all()->reverse();
+        $antrians = Antrian::where('status', 'menunggu')
+        ->get()
+        ->reverse();
         return view('antrian', 
         [
             'antrians' => $antrians
@@ -61,6 +63,23 @@ class AntrianController extends Controller
         return view('antrian-detail', [
             'antrian' => $antrian
         ]);
+    }
+
+    public function card($id){
+        $antrian = Antrian::find($id);
+
+        return view('antrian-card', [
+            'antrian' => $antrian
+        ]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $antrian = Antrian::find($id);
+        $antrian->status = $request->status;
+        $antrian->save();
+
+        return redirect()->route('dashboard');
     }
 
     public function destroy($id)

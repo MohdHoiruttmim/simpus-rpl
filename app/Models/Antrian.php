@@ -18,16 +18,19 @@ class Antrian extends Model
         'no_telp',
         'no_bpjs',
         'tanggal',
-        'id_user'
+        'user_id'
     ];
 
     protected $casts = [
         'tanggal' => 'date',
     ];
-/*
+
+    // public function checkup()
+    // {
+    //     return $this->hasOne(Checkup::class, 'antrian_id');
+    // }
     public function checkup()
     {
         return $this->hasOne(Checkup::class);
     }
-*/
 }

@@ -10,11 +10,12 @@ class Checkup extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nama',
-        'nik',
-        'status',
-        'poli',
-        'no_bpjs',
-        'tanggal',
+        'diagnosa',
+        'antrian_id'
     ];
+
+    public function antrian()
+    {
+        return $this->belongsTo(Antrian::class);
+    }
 }
