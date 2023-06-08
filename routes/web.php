@@ -8,6 +8,7 @@ use App\Http\Controllers\ResetController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\CheckupController;
 use App\Http\Controllers\AntrianController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Route;
@@ -34,9 +35,9 @@ Route::group(['middleware' => 'auth'], function () {
 			return view('dashboard');
 		})->name('adminDashboard');
 
-		Route::get('user-management', function () {
-			return view('laravel-examples/user-management');
-		})->name('user-management');
+		Route::get('user-management',
+		[UserController::class, "index"]
+		)->name('user-management');
 		Route::get('user-management/add', function () {
 			return view('laravel-examples/user-add');
 		})->name('user-add');
