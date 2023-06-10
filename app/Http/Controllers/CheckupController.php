@@ -40,7 +40,8 @@ class CheckupController extends Controller
         $antrian = Antrian::find($id);
         $antrian->status = 'selesai';
         $antrian->save();
-        return redirect()->route('antrian')->with('success', 'Checkup added successfully.');
+        // return redirect()->route('antrian')->with('success', 'Checkup added successfully.');
+        return redirect()->route('antrian');
     }
 
 

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('alamat');
             $table->string('no_telp');
             $table->string('no_bpjs')->nullable();
-            $table->dateTime('tanggal');
+            $table->date('tanggal');
             $table->foreignId('user_id')->nullable()->constrained('users');
         });
     }

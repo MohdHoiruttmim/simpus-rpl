@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Antrian;
 use Carbon\Carbon;
+use App\Controllers\UserLogController;
 
 class AntrianController extends Controller
 {
@@ -53,6 +54,8 @@ class AntrianController extends Controller
             'tanggal' => $formattedDate,
             'user_id' => auth()->user()->id
         ]);
+
+        UserLogController::store(auth()->user()->id, 'mendaftar antrian');
 
         return redirect()->route('checkup-register');
     }

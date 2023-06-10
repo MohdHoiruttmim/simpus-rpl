@@ -9,6 +9,7 @@ use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\CheckupController;
 use App\Http\Controllers\AntrianController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserLogController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Route;
@@ -42,9 +43,9 @@ Route::group(['middleware' => 'auth'], function () {
 			return view('laravel-examples/user-add');
 		})->name('user-add');
 
-		Route::get('billing', function () {
-			return view('billing');
-		})->name('billing');
+		Route::get('activity', 
+		[UserLogController::class, "index"]
+		)->name('log-activity');
 
 		// CheckupController
 		Route::get('antrian',
@@ -84,6 +85,8 @@ Route::group(['middleware' => 'auth'], function () {
 		->name('checkup-log-show');
 	});
 
+	
+
 	Route::get('conversation', function () {
 		return view('conversation');
 	})->name('conversation');
@@ -101,9 +104,9 @@ Route::group(['middleware' => 'auth'], function () {
 	->name('card');
 
     Route::get('/', [HomeController::class, 'home']);
-	Route::get('dashboard', function () {
-		return view('dashboard');
-	})->name('dashboard');
+	Route::get('dashboard', 
+	[HomeController::class, "index"]
+	)->name('dashboard');
 
 	Route::get('profile', function () {
 		return view('profile');

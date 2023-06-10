@@ -21,7 +21,7 @@
                 }}</span></span>
           </div>
           <div class="ms-auto text-end">
-            <a class="btn btn-link text-dark px-3 mb-0" href="{{ route('checkup-log-show', 1) }}"><i
+            <a class="btn btn-link text-dark px-3 mb-0" href="{{ route('checkup-log-show', $r->checkup->id) }}"><i
                 class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Detail</a>
             <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;"><i
                 class="far fa-trash-alt me-2"></i>Delete</a>

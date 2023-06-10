@@ -29,6 +29,11 @@ class User extends Authenticatable
         'about_me',
     ];
 
+    public function userLog()
+    {
+        return $this->hasMany(UserLog::class);
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
