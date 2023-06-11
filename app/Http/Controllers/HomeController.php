@@ -19,10 +19,24 @@ class HomeController extends Controller
 
     public function index()
     {
-        $antrian = Antrian::where('status', '==', 'menunggu')->count();
+        $antrian = Antrian::where('status', '=', 'menunggu')->count();
         $checkup = Checkup::count();
         $user = User::count();
         $userLog = UserLog::all();
+
+        $poli = Antrian::select('poli', DB::raw('COUNT(id) as Total'))
+        ->where('status', 'selesai')
+        ->groupBy('poli')
+        ->get();
+
+        $poliLabel = [];
+        $kunjungan = [];
+        $decodePoli = json_decode($poli);
+
+        foreach ($poli as $key => $value) {
+            $poliLabel[] = $value->poli;
+            $kunjungan[] = $value->Total;
+        }
 
         $checkupGraph = Antrian::select('tanggal', DB::raw('COUNT(id) as Total'))
         ->where('status', 'selesai')
@@ -48,7 +62,9 @@ class HomeController extends Controller
             'userLog' => $userLog,
             'chart' => [
                 'label' => $label,
-                'data' => $data
+                'data' => $data,
+                'poli' => $poliLabel,
+                'kunjungan' => $kunjungan,
             ]
         ]);
     }

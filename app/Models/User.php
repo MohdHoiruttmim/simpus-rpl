@@ -34,6 +34,11 @@ class User extends Authenticatable
         return $this->hasMany(UserLog::class);
     }
 
+    public function konsultasi()
+    {
+        return $this->hasMany(Konsultasi::class);
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

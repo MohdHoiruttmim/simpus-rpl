@@ -5,18 +5,22 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Antrian;
 use Carbon\Carbon;
-use App\Controllers\UserLogController;
+use App\Http\Controllers\UserLogController;
+use App\Http\Controllers\KonsultasiController;
 
 class AntrianController extends Controller
 {
     public function index()
     {
         $antrians = Antrian::where('status', 'menunggu')
-        ->get()
-        ->reverse();
+        ->get();
+
+        $konsultasi = new KonsultasiController();
+        $konsultasi = $konsultasi->index();
         return view('antrian', 
         [
-            'antrians' => $antrians
+            'antrians' => $antrians,
+            'konsultasi' => $konsultasi
         ]);
     }
 
@@ -55,7 +59,8 @@ class AntrianController extends Controller
             'user_id' => auth()->user()->id
         ]);
 
-        UserLogController::store(auth()->user()->id, 'mendaftar antrian');
+        $log = new UserLogController();
+        $log->store(auth()->user()->id, 'mendaftar Antrian Periksa');
 
         return redirect()->route('checkup-register');
     }
@@ -90,6 +95,6 @@ class AntrianController extends Controller
         $antrian = Antrian::find($id);
         $antrian->delete();
 
-        return redirect()->route('dashboard');
+        return redirect()->route('antrian');
     }
 }

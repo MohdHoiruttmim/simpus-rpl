@@ -29,9 +29,9 @@
         <p class="card-description mb-4 text-center">
           Jadwalkan konsultasi dengan dokter sesuai dengan jadwal anda!
         </p>
-        <button class="btn btn-icon btn-3 btn-success w-100" type="button">
+        <a href="{{ route('antrian-konsultasi') }}" class="btn btn-icon btn-3 btn-success w-100" type="button">
           <span class="btn-inner--text">Daftar</span>
-        </button>
+        </a>
       </div>
     </div>
   </div>

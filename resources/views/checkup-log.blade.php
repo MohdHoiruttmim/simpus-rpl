@@ -12,7 +12,7 @@
         @foreach ($riwayat as $r)
         <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
           <div class="d-flex flex-column">
-            <h6 class="mb-3 text-sm">Oliver Liam</h6>
+            <h6 class="mb-3 text-sm">{{ $r->nama }}</h6>
             <span class="mb-2 text-xs">Company Name: <span class="text-dark font-weight-bold ms-sm-2">{{ $r->nama
                 }}</span></span>
             <span class="mb-2 text-xs">Tanggal: <span class="text-dark ms-sm-2 font-weight-bold"> {{ $r->created_at

@@ -10,6 +10,7 @@ use App\Http\Controllers\CheckupController;
 use App\Http\Controllers\AntrianController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserLogController;
+use App\Http\Controllers\KonsultasiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Route;
@@ -32,9 +33,9 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 	Route::group(['middleware' => 'role:admin'], function() {
-		Route::get('/adminDashboard', function () {
-			return view('dashboard');
-		})->name('adminDashboard');
+		Route::get('/adminDashboard',
+		[HomeController::class, "index"]
+		)->name('adminDashboard');
 
 		Route::get('user-management',
 		[UserController::class, "index"]
@@ -54,6 +55,9 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('antrian/{id}',
 		[AntrianController::class, "show"])
 		->name('antrian-detail');
+		Route::get('antrian-del/{id}', 
+		[AntrianController::class, "destroy"]
+		)->name('antrian-delete');
 
 		Route::get('checkup-history',
 		[CheckupController::class, "index"])
@@ -64,6 +68,9 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::post('checkup-history/{id}',
 		[CheckupController::class, "store"])
 		->name('checkup-history-store');
+		Route::patch('checkup-history/{id}',
+		[CheckupController::class, "update"])
+		->name('checkup-history-update');
 
 	});
 
@@ -98,6 +105,12 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('antrian',
 	[AntrianController::class, "store"])
 	->name('antrian-store');
+	Route::get('antrian-konsultasi', function () {
+		return view('antrian-konsul');
+	})->name('antrian-konsultasi');
+	Route::post('antrian-konsultasi',
+	[KonsultasiController::class, "store"]
+	)->name('antrian-konsultasi-store');
 
 	Route::get('card/{id}',
 	[AntrianController::class, "card"])

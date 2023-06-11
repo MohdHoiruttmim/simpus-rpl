@@ -50,12 +50,11 @@
                     <td>
                       <span class="text-xs font-weight-bold">{{ $r->antrian->created_at }}</span>
                     </td>
-                    <td class="align-middle text-center">
-                      <p class="text-sm font-weight-bold mb-0">Mata</p>
+                    <td class="align-middle text-center text-capitalize">
+                      <p class="text-sm font-weight-bold mb-0">{{ $r->antrian->poli }}</p>
                     </td>
                     <td class="align-middle">
-                      <a class="btn btn-link text-secondary mb-0"
-                        href="{{ route('checkup-history-show', Auth::user()->id) }}">
+                      <a class="btn btn-link text-secondary mb-0" href="{{ route('checkup-history-show', $r->id) }}">
                         <i class="fa fa-ellipsis-v text-xs"></i>
                       </a>
                     </td>

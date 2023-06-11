@@ -54,7 +54,8 @@
           </div>
           <div class="col">
             <button class="btn btn-success" type="submit">Selesai</button>
-            <a href="{{ route('antrian') }}" class="btn btn-danger ms-2">Hapus</a>
+            <a href="{{ route('antrian-delete', $antrian->id) }}" class="btn btn-danger ms-2"
+              onclick="return confirm('apakah anda yakin akan menghapus?')">Hapus</a>
           </div>
         </form>
       </div>

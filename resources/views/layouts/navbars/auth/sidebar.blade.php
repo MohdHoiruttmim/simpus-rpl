@@ -71,7 +71,7 @@
       </li>
       @endif
       <li class="nav-item">
-        <a class="nav-link {{ (Request::is('checkup-history') ? 'active' : '') }}"
+        <a class="nav-link {{ (Request::is('checkup-history') || Request::is('checkup/log') ? 'active' : '') }}"
           href="{{ ((Auth::user()->role =='admin') ? '/checkup-history' : '/checkup/log') }}">
           <div
             class="icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">

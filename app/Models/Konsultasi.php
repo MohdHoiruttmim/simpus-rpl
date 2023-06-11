@@ -5,13 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class UserLog extends Model
+class Konsultasi extends Model
 {
     use HasFactory;
 
     protected $fillable = [
+        'nama',
+        'poli',
+        'keluhan',
+        'status',
+        'tanggal_konsul',
         'user_id',
-        'action',
     ];
 
     public function user()
