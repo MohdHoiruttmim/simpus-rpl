@@ -14,7 +14,7 @@
             </div>
             <ul class="navbar-nav  justify-content-end">
                 <li class="nav-item d-flex align-items-center">
-                    <a href="http://localhost:3000/logout" class="nav-link text-body font-weight-bold px-0">
+                    <a href="{{ route('logout') }}" class="nav-link text-body font-weight-bold px-0">
                         <i class="fa fa-power-off me-sm-1" aria-hidden="true"></i>
                         <span class="d-sm-inline d-none">Sign Out</span>
                     </a>

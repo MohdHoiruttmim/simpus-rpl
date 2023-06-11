@@ -30,4 +30,13 @@ class KonsultasiController extends Controller
         $konsultasi = Konsultasi::where('status', 'menunggu')->get();
         return $konsultasi;
     }
+
+    public function show($id)
+    {
+        $konsultasi = Konsultasi::where('user_id', auth()->user()->id)
+        ->get()
+        ->reverse()
+        ->take(3);
+        return $konsultasi;
+    }
 }

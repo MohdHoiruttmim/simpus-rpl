@@ -67,7 +67,7 @@
                       <span class="badge badge-sm bg-gradient-success">{{ $konsul->status }}</span>
                     </td>
                     <td class="align-middle text-center">
-                      <span class="text-secondary text-xs font-weight-bold">{{ $konsul->created_at }}</span>
+                      <span class="text-secondary text-xs font-weight-bold">{{ $konsul->tanggal_konsul }}</span>
                     </td>
                     <td class="align-middle">
                       <a href="{{ route('antrian') }}" class="text-secondary font-weight-bold text-xs"

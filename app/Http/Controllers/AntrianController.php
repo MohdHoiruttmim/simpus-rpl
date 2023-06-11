@@ -33,7 +33,7 @@ class AntrianController extends Controller
 
         return view('checkup-register', 
         [
-            'riwayat' => $riwayat
+            'riwayat' => $riwayat,
         ]);
     }
 

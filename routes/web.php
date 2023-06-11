@@ -115,6 +115,9 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('card/{id}',
 	[AntrianController::class, "card"])
 	->name('card');
+	Route::get('card-k/{id}',
+	[AntrianController::class, "card"])
+	->name('card');
 
     Route::get('/', [HomeController::class, 'home']);
 	Route::get('dashboard', 
@@ -137,7 +140,8 @@ Route::group(['middleware' => 'auth'], function () {
 	// 	return view('static-sign-up');
 	// })->name('sign-up');
 
-    Route::get('/logout', [SessionsController::class, 'destroy']);
+    Route::get('/logout', [SessionsController::class, 'destroy'])
+		->name('logout');
 	Route::get('/user-profile', [InfoUserController::class, 'create']);
 	Route::post('/user-profile', [InfoUserController::class, 'store']);
     Route::get('/login', function () {
