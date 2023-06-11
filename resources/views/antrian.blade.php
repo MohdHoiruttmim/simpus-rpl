@@ -69,11 +69,15 @@
                     <td class="align-middle text-center">
                       <span class="text-secondary text-xs font-weight-bold">{{ $konsul->tanggal_konsul }}</span>
                     </td>
-                    <td class="align-middle">
-                      <a href="{{ route('antrian') }}" class="text-secondary font-weight-bold text-xs"
-                        data-toggle="tooltip" data-original-title="Edit user">
-                        Edit
+                    <td class="align-middle d-flex justify-content-center">
+                      <a href="/chatify/{{ $konsul->user_id }}"
+                        class="text-white font-weight-bold text-xs btn btn-sm btn-success" data-toggle="tooltip"
+                        data-original-title="Edit user">
+                        Hub
                       </a>
+                      <form action="POST" action="" class="mx-2">
+                        <button class="btn btn-sm btn-warning">Acc</button>
+                      </form>
                     </td>
                   </tr>
                   @endforeach
