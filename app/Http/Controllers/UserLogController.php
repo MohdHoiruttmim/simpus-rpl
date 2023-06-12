@@ -9,7 +9,9 @@ class UserLogController extends Controller
 {
     public function index()
     {
-        $userLog = UserLog::all()->reverse();
+        $userLog = UserLog::all()
+        ->take(10)
+        ->reverse();
         return view('log', 
         [
             'userLog' => $userLog,

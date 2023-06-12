@@ -111,6 +111,12 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('antrian-konsultasi',
 	[KonsultasiController::class, "store"]
 	)->name('antrian-konsultasi-store');
+	Route::get('antrian-konsultasi/{id}',
+	[KonsultasiController::class, "destroy"]
+	)->name('antrian-konsultasi-delete');
+	Route::patch('antrian-konsultasi/{id}',
+	[KonsultasiController::class, "patch"]
+	)->name('antrian-konsultasi-patch');
 
 	Route::get('card/{id}',
 	[AntrianController::class, "card"])

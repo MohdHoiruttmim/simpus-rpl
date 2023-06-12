@@ -10,10 +10,24 @@ use App\Http\Controllers\KonsultasiController;
 
 class AntrianController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $antrians = Antrian::where('status', 'menunggu')
-        ->get();
+        if ($request->has('search') && $request->search != null) {
+            $antrians = Antrian::where('nama', 'like', "%".$request->search."%")
+            ->orWhere('nik', 'like', "%".$request->search."%")
+            ->orWhere('no_telp', 'like', "%".$request->search."%")
+            ->orWhere('no_bpjs', 'like', "%".$request->search."%")
+            ->orWhere('poli', 'like', "%".$request->search."%")
+            ->orWhere('alamat', 'like', "%".$request->search."%")
+            ->orWhere('tanggal', 'like', "%".$request->search."%")
+            ->orWhere('status', 'like', "%".$request->search."%")
+            ->get();
+        } else {
+            $antrians = Antrian::where('status', 'menunggu')
+            ->get();
+        }
+        // $antrians = Antrian::where('status', 'menunggu')
+        // ->get();
 
         $konsultasi = new KonsultasiController();
         $konsultasi = $konsultasi->index();
