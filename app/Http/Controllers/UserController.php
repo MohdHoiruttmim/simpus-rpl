@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -19,5 +20,25 @@ class UserController extends Controller
         [
             'users' => $users
         ]);
+    }
+
+    public function store(Request $request) {
+        // dd($request->all());
+        $request->validate([
+            'name' => 'required',
+            'username' => 'required',
+            'email' => 'required',
+            'role' => 'required',
+        ]);
+
+        User::create([
+            'name' => $request->name,
+            'username' => $request->username,
+            'email' => $request->email,
+            'role' => strtolower($request->role),
+            'password' => Hash::make($request->password),
+        ]);
+
+        return redirect()->route('user-management');
     }
 }
