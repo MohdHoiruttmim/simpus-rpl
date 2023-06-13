@@ -21,6 +21,7 @@ class AntrianController extends Controller
             ->orWhere('alamat', 'like', "%".$request->search."%")
             ->orWhere('tanggal', 'like', "%".$request->search."%")
             ->orWhere('status', 'like', "%".$request->search."%")
+            ->orderBy('created_at', 'desc')
             ->get();
         } else {
             $antrians = Antrian::where('status', 'menunggu')

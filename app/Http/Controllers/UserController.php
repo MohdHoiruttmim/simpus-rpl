@@ -41,4 +41,19 @@ class UserController extends Controller
 
         return redirect()->route('user-management');
     }
+
+    public function reset($id) {
+        $user = User::find($id);
+        $user->password = Hash::make('12345678');
+        $user->save();
+
+        return redirect()->route('user-management');
+    }
+
+    public function destroy($id) {
+        $user = User::find($id);
+        $user->delete();
+
+        return redirect()->route('user-management');
+    }
 }

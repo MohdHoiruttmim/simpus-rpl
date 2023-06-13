@@ -4,7 +4,7 @@
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-5 mt-4">
+    <div class="col-md-8 mt-4">
       <div class="card h-100 mb-4">
         <div class="card-header pb-0 px-3">
           <div class="row">
@@ -13,7 +13,12 @@
             </div>
             <div class="col-md-6 d-flex justify-content-end align-items-center">
               <i class="far fa-calendar-alt me-2"></i>
-              <small>23 - 30 March 2020</small>
+              <small>
+                <script>
+                  var dt = new Date();
+                  document.write(dt.toLocaleDateString());
+                </script>
+              </small>
             </div>
           </div>
         </div>

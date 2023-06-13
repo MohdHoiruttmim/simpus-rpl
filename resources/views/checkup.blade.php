@@ -8,13 +8,6 @@
       <div class="col-md-6">
         <form action="?search" method="GET">
           <div class="form-group d-flex align-items-center">
-            <div class="input-group">
-              <select name="poli" class="form-control mb-2">
-                <option value="" disabled selected>Filter poli</option>
-                <option value="">Semua Poli</option>
-                <option value="mata">Mata</option>
-              </select>
-            </div>
             <div class="input-group mb-2">
               <input class="form-control" placeholder="Search ..." type="text" name="search">
             </div>

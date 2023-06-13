@@ -43,9 +43,15 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('user-management/add', function () {
 			return view('laravel-examples/user-add');
 		})->name('user-add');
+		Route::get('user-management/{id}',
+		[UserController::class, "reset"]
+		)->name('user-reset-password');
 		Route::post('user-management/add',
 		[UserController::class, "store"]
 		)->name('user-add-store');
+		Route::delete('user-management/{id}',
+		[UserController::class, "destroy"]
+		)->name('user-delete');
 
 		Route::get('activity', 
 		[UserLogController::class, "index"]
