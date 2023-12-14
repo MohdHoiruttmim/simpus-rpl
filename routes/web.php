@@ -27,6 +27,11 @@ use App\Http\Controllers\Auth\RedirectAuthenticatedUsersController;
 |
 */
 
+Route::get('/scan', function () {
+	return view('scan');
+})->name('scan');
+Route::post('/scan', [AntrianController::class, 'store_qr'])->name('scan-post');
+
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::get("/redirectAuthenticatedUsers", [RedirectAuthenticatedUsersController::class, "home"]);

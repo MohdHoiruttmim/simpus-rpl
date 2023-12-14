@@ -52,6 +52,11 @@ class AntrianController extends Controller
         ]);
     }
 
+    public function store_qr(Request $request)
+    {
+        dd($request->all());
+    }
+
     public function store(Request $resquest)
     {
         // $resquest->validate([
