@@ -4,7 +4,7 @@
 
 <main class="main-content">
   <section>
-    <div class="page-header min-vh-75" style="background-image: url('../assets/img/curved-images/regis-pic.jpg')">
+    <div class="page-header min-vh-75">
       <span class="mask bg-gradient-success opacity-7"></span>
       <div class=" container">
         <div class="row">

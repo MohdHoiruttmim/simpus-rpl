@@ -10,7 +10,8 @@
           <form action="?search" method="GET">
             <div class="form-group d-flex align-items-center">
               <div class="input-group mb-2">
-                <input class="form-control" placeholder="Search ..." type="text" name="search">
+                <input class="form-control" placeholder="Search ..." type="text" name="search"
+                  value="{{ (isset($_GET['search']))? $_GET['search'] : '' }}">
               </div>
               <button type="submit" class="btn ms-2">Cari</button>
             </div>
@@ -21,7 +22,9 @@
             <h3>Antrian</h3>
             <div class="tab-table">
               <a href="?periksa=true" class="btn btn-default mx-2">Periksa</a>
-              <a href="?konsultasi=true" class="btn btn-default mx-2">Konsultasi</a>
+              <a id="open" href="" class="btn btn-default mx-2" data-bs-toggle="modal"
+                data-bs-target="#exampleModal">Scan QR</a>
+              <!-- <a href="?konsultasi=true" class="btn btn-default mx-2">Konsultasi</a> -->
             </div>
           </div>
           <div class="card-body px-0 pt-0 pb-2">
@@ -119,5 +122,79 @@
     </div>
   </div>
 </main>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <video id="preview" class="img-thumbnail"></video>
+        <form action="{{ route('antrian-store') }}" method="POST">
+          @csrf
+          <input type="hidden" name="id_user" id="id_user">
+          <input type="hidden" name="poli" id="poli">
+          <input type="hidden" name="antrian" id="antrian">
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button id="close" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="{{ asset('js/instascan.min.js') }}"></script>
+<script type="text/javascript">
+  let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
+  const open = document.getElementById('open');
+  const close = document.getElementById('close');
+
+  close.addEventListener('click', () => {
+    scanner.stop();
+  });
+
+  open.addEventListener('click', () => {
+    Instascan.Camera.getCameras().then(function (cameras) {
+      if (cameras.length > 0) {
+        console.log(cameras)
+        scanner.start(cameras[1]);
+      } else {
+        console.error('No hay camaras disponibles.');
+      }
+    }).catch(function (e) {
+      console.error(e);
+    });
+  });
+
+  scanner.addListener('scan', function (content) {
+    // Membagi string menjadi pasangan kunci-nilai
+    const keyValuePairs = content.split(', ');
+    // Membuat objek JavaScript dari pasangan kunci-nilai
+    const dataObject = keyValuePairs.reduce((obj, pair) => {
+      // Memisahkan setiap pasangan kunci dan nilai berdasarkan titik dua
+      const [key, value] = pair.split(':');
+      // Menetapkan pasangan kunci-nilai ke objek
+      obj[key] = value;
+
+      return obj;
+    }, {});
+
+    const id_user = document.getElementById('id_user');
+    const poli = document.getElementById('poli');
+    const antrian = document.getElementById('antrian');
+
+    id_user.value = dataObject['id'];
+    poli.value = dataObject['poli'];
+    antrian.value = dataObject['antrian'];
+
+    antrian.parentElement.submit();
+    // Tampilkan objek hasil
+    console.log(dataObject);
+  });
+</script>
 
 @endsection

@@ -41,6 +41,7 @@ class AntrianController extends Controller
 
     public function index_user()
     {
+        $antrian = Antrian::where('status', '=', 'menunggu')->count();
         $riwayat = Antrian::where('user_id', auth()->user()->id)
         ->get()
         ->reverse()
@@ -49,6 +50,7 @@ class AntrianController extends Controller
         return view('checkup-register', 
         [
             'riwayat' => $riwayat,
+            'antrian' => $antrian,
         ]);
     }
 
@@ -57,32 +59,27 @@ class AntrianController extends Controller
         dd($request->all());
     }
 
-    public function store(Request $resquest)
+    public function store(Request $request)
     {
-        // $resquest->validate([
-        //     'nama' => 'required',
-        //     'alamat' => 'required',
-        //     'no_hp' => 'required'
-        // ]);
         $date = Carbon::now();
         $formattedDate = $date->format('d F Y, H:i:s');
 
         Antrian::create([
-            'nama' => $resquest->nama,
-            'nik' => $resquest->nik,
+            'nama' => $request->antrian,
+            // 'nik' => $resquest->nik,
             'status' => 'menunggu',
-            'poli' => $resquest->poli,
-            'alamat' => $resquest->alamat,
-            'no_telp' => $resquest->no_telp,
-            'no_bpjs' => ($resquest->no_bpjs) ? $resquest->no_bpjs : null,
+            'poli' => $request->poli,
+            // 'alamat' => $resquest->alamat,
+            // 'no_telp' => $resquest->no_telp,
+            // 'no_bpjs' => ($resquest->no_bpjs) ? $resquest->no_bpjs : null,
             'tanggal' => $formattedDate,
-            'user_id' => auth()->user()->id
+            'user_id' => $request->id_user,
         ]);
 
         $log = new UserLogController();
         $log->store(auth()->user()->id, 'mendaftar Antrian Periksa');
 
-        return redirect()->route('checkup-register');
+        return redirect()->route('antrian');
     }
 
     public function show($id){
