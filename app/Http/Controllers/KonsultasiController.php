@@ -27,7 +27,8 @@ class KonsultasiController extends Controller
 
     public function index()
     {
-        $konsultasi = Konsultasi::where('status', 'menunggu')->get();
+        // $konsultasi = Konsultasi::where('status', 'menunggu')->get();
+        $konsultasi = Konsultasi::all();
         return $konsultasi;
     }
 
@@ -38,5 +39,28 @@ class KonsultasiController extends Controller
         ->reverse()
         ->take(3);
         return $konsultasi;
+    }
+
+    public function patch($id)
+    {
+        $konsultasi = Konsultasi::find($id);
+        $konsultasi->status = 'disetujui';
+        $konsultasi->save();
+
+        $userLog = new UserLogController();
+        $userLog->store(auth()->user()->id, 'Mengubah status konsultasi');
+
+        return redirect()->route('antrian');
+    }
+
+    public function destroy($id)
+    {
+        $konsultasi = Konsultasi::find($id);
+        $konsultasi->delete();
+
+        $userLog = new UserLogController();
+        $userLog->store(auth()->user()->id, 'Menghapus konsultasi');
+
+        return redirect()->route('antrian');
     }
 }

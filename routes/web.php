@@ -27,6 +27,11 @@ use App\Http\Controllers\Auth\RedirectAuthenticatedUsersController;
 |
 */
 
+Route::get('/scan', function () {
+	return view('scan');
+})->name('scan');
+Route::post('/scan', [AntrianController::class, 'store_qr'])->name('scan-post');
+
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::get("/redirectAuthenticatedUsers", [RedirectAuthenticatedUsersController::class, "home"]);
@@ -43,6 +48,15 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('user-management/add', function () {
 			return view('laravel-examples/user-add');
 		})->name('user-add');
+		Route::get('user-management/{id}',
+		[UserController::class, "reset"]
+		)->name('user-reset-password');
+		Route::post('user-management/add',
+		[UserController::class, "store"]
+		)->name('user-add-store');
+		Route::delete('user-management/{id}',
+		[UserController::class, "destroy"]
+		)->name('user-delete');
 
 		Route::get('activity', 
 		[UserLogController::class, "index"]
@@ -111,6 +125,12 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('antrian-konsultasi',
 	[KonsultasiController::class, "store"]
 	)->name('antrian-konsultasi-store');
+	Route::get('antrian-konsultasi/{id}',
+	[KonsultasiController::class, "destroy"]
+	)->name('antrian-konsultasi-delete');
+	Route::patch('antrian-konsultasi/{id}',
+	[KonsultasiController::class, "patch"]
+	)->name('antrian-konsultasi-patch');
 
 	Route::get('card/{id}',
 	[AntrianController::class, "card"])

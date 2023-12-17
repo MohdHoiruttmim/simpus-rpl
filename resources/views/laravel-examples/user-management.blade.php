@@ -6,12 +6,15 @@
     <div class="row">
         <div class="col-12">
             <div class="col-md-4 mx-4">
-                <div class="form-group d-flex align-items-center">
-                    <div class="input-group mb-2">
-                        <input class="form-control" placeholder="Search ..." type="text">
+                <form action="?nama" method="GET">
+                    <div class="form-group d-flex align-items-center">
+                        <div class="input-group mb-2">
+                            <input class="form-control" placeholder="Search ..." type="text" name="nama"
+                                value="{{ old('nama') }}">
+                        </div>
+                        <button type="submit" class="btn ms-2">Cari</button>
                     </div>
-                    <button type="submit" class="btn ms-2">Cari</button>
-                </div>
+                </form>
             </div>
             <div class="card mb-4 mx-4">
                 <div class="card-header pb-0">
@@ -84,13 +87,11 @@
                                             }}</span>
                                     </td>
                                     <td class="text-center">
-                                        <a href="#" class="mx-3" data-bs-toggle="tooltip"
-                                            data-bs-original-title="Edit user">
-                                            <i class="fas fa-user-edit text-secondary"></i>
+                                        <a href="{{ route('user-reset-password', $user->id) }}" class="mx-3"
+                                            data-bs-toggle="tooltip" data-bs-original-title="Reset Password"
+                                            onclick="return confirm('apakah anda yakin ?')">
+                                            <i class="fas fa-user-edit text-warning"></i>
                                         </a>
-                                        <span>
-                                            <i class="cursor-pointer fas fa-trash text-secondary"></i>
-                                        </span>
                                     </td>
                                 </tr>
                                 @endforeach

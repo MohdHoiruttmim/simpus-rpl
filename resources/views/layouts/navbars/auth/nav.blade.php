@@ -14,7 +14,7 @@
             </div>
             <ul class="navbar-nav  justify-content-end">
                 <li class="nav-item d-flex align-items-center">
-                    <a href="{{ route('logout') }}" class="nav-link text-body font-weight-bold px-0">
+                    <a href="{{ route('logout') }}" class="nav-link text-body font-weight-bold px-0 mx-3">
                         <i class="fa fa-power-off me-sm-1" aria-hidden="true"></i>
                         <span class="d-sm-inline d-none">Sign Out</span>
                     </a>
@@ -26,11 +26,6 @@
                             <i class="sidenav-toggler-line"></i>
                             <i class="sidenav-toggler-line"></i>
                         </div>
-                    </a>
-                </li>
-                <li class="nav-item px-3 d-flex align-items-center">
-                    <a href="javascript:;" class="nav-link text-body p-0">
-                        <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer" aria-hidden="true"></i>
                     </a>
                 </li>
                 <li class="nav-item dropdown pe-2 d-flex align-items-center">

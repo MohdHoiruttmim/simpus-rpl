@@ -6,19 +6,14 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-6">
-        <div class="form-group d-flex align-items-center">
-          <div class="input-group">
-            <select name="poli" class="form-control mb-2">
-              <option value="" disabled selected>Filter poli</option>
-              <option value="">Semua Poli</option>
-              <option value="mata">Mata</option>
-            </select>
+        <form action="?search" method="GET">
+          <div class="form-group d-flex align-items-center">
+            <div class="input-group mb-2">
+              <input class="form-control" placeholder="Search ..." type="text" name="search">
+            </div>
+            <button type="submit" class="btn ms-2">Cari</button>
           </div>
-          <div class="input-group mb-2">
-            <input class="form-control" placeholder="Search ..." type="text">
-          </div>
-          <button type="submit" class="btn ms-2">Cari</button>
-        </div>
+        </form>
       </div>
       <div class="col-12">
         <div class="card mb-4">
@@ -66,6 +61,7 @@
           </div>
         </div>
       </div>
+      {{ $riwayat->links() }}
     </div>
   </div>
 </main>

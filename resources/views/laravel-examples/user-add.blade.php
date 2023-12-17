@@ -5,23 +5,24 @@
 <div>
   <div class="row">
     <div class="col-6">
-      <form class="card p-4">
+      <form class="card p-4" method="POST" action="{{ route('user-add-store') }}">
+        @csrf
         <h3>Register</h3>
         <div class="form-group">
           <label for="example-text-input" class="form-control-label">Nama</label>
-          <input class="form-control" type="text" id="example-text-input">
+          <input class="form-control" type="text" id="example-text-input" name="name">
         </div>
         <div class="form-group">
           <label for="example-text-input" class="form-control-label">Username</label>
-          <input class="form-control" type="text" id="example-text-input">
+          <input class="form-control" type="text" id="example-text-input" name="username">
         </div>
         <div class="form-group">
           <label for="example-email-input" class="form-control-label">Email</label>
-          <input class="form-control" type="email" id="example-email-input">
+          <input class="form-control" type="email" id="example-email-input" name="email">
         </div>
         <div class="form-group">
           <label for="example-tel-input" class="form-control-label">No. Telp</label>
-          <input class="form-control" type="tel" value="40-(770)-888-444" id="example-tel-input">
+          <input class="form-control" type="tel" id="example-tel-input" name="no_telp">
         </div>
         <label for="gender">Gender</label>
         <div class="form-group d-flex">
@@ -36,14 +37,14 @@
         </div>
         <div class="form-group">
           <label for="exampleFormControlSelect1">Role</label>
-          <select class="form-control" id="exampleFormControlSelect1">
+          <select class="form-control" id="exampleFormControlSelect1" name="role">
             <option value="admin">Admin</option>
             <option value="user">User</option>
           </select>
         </div>
         <div class="form-group">
           <label for="example-password-input" class="form-control-label">Password</label>
-          <input class="form-control" type="password" id="example-password-input">
+          <input class="form-control" type="password" id="example-password-input" name="password">
         </div>
         <div class="col">
           <button class="btn btn-success me-2" type="submit">Save</button>

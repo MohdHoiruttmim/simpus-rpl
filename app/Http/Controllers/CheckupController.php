@@ -6,16 +6,37 @@ use Illuminate\Http\Request;
 use App\Models\Checkup;
 use App\Models\Antrian;
 use App\Http\Controllers\UserLogController;
+use Illuminate\Support\Facades\DB;
 
 class CheckupController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-      $riwayat = Checkup::all()->reverse();
-      return view('checkup', 
-      [
-        'riwayat' => $riwayat
-      ]);
+        // if ($request->has('search') && $request->search != null) {
+        //     // $riwayat = Checkup::where('diagnosa', 'like', "%".$request->search."%")
+        //     // ->orWhere('created_at', 'like', "%".$request->search."%")
+        //     // ->orderBy('created_at', 'desc')
+        //     // ->paginate(10);
+        //     $riwayat = DB::table('checkups')
+        //     ->join('antrians', 'checkups.antrian_id', '=', 'antrians.id')
+        //     ->select('checkups.*', 'antrians.*')
+        //     ->where('antrians.nama', 'like', "%".$request->search."%")
+        //     ->orWhere('antrians.poli', 'like', "%".$request->search."%")
+        //     ->orderBy('checkups.created_at', 'desc')
+        //     ->paginate(10);
+        // } else {
+        //     // $riwayat = Checkup::orderBy('created_at', 'desc')->paginate(10);
+        //     $riwayat = DB::table('checkups')
+        //     ->join('antrians', 'checkups.antrian_id', '=', 'antrians.id')
+        //     ->select('checkups.*', 'antrians.*')
+        //     ->orderBy('checkups.created_at', 'desc')
+        //     ->paginate(10);
+        // }
+        $riwayat = Checkup::orderBy('created_at', 'desc')->paginate(10);
+        return view('checkup', 
+        [
+            'riwayat' => $riwayat
+        ]);
     }
 
     public function show($id)
@@ -31,9 +52,20 @@ class CheckupController extends Controller
 
     public function store(Request $request, $id)
     {
+        // dd($request->all());
         $request->validate([
             'diagnosa' => 'required',
         ]);
+
+        // Antrian::where('id', $id)->create([
+        //     'nama' => $request->nama,
+        //     'nik' => $request->nik,
+        //     'status' => 'selesai',
+        //     'poli' => $request->poli,
+        //     'alamat' => $request->alamat,
+        //     'no_telp' => $request->no_telp,
+        //     'no_bpjs' => ($request->no_bpjs) ? $request->no_bpjs : null,
+        // ]);
 
         Checkup::create([
             'diagnosa' => $request->get('diagnosa'),
@@ -41,6 +73,11 @@ class CheckupController extends Controller
         ]);
 
         $antrian = Antrian::find($id);
+        $antrian->nama = $request->nama;
+        $antrian->nik = $request->nik;
+        $antrian->alamat = $request->alamat;
+        $antrian->no_telp = $request->no_telp;
+        $antrian->no_bpjs = ($request->no_bpjs) ? $request->no_bpjs : null;
         $antrian->status = 'selesai';
         $antrian->save();
         // return redirect()->route('antrian')->with('success', 'Checkup added successfully.');
@@ -48,6 +85,7 @@ class CheckupController extends Controller
     }
     public function update(Request $request, $id)
     {
+        // dd($request->all());
         $request->validate([
             'diagnosa' => 'required',
         ]);

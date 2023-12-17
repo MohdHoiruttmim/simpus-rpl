@@ -13,16 +13,6 @@
             <label for="nama" class="form-control-label">Nama</label>
             <input class="form-control" type="text" id="nama" name="nama" required>
           </div>
-          <label for="poli" class="form-control-label">Poli</label>
-          <div class="input-group">
-            <select name="poli" class="form-control mb-2">
-              <option value="" disabled selected>Pilih Poli</option>
-              <option value="mata">Mata</option>
-              <option value="kesehatan ibu anak">Kesehatan Ibu dan Anak</option>
-              <option value="gigi">Gigi</option>
-              <option value="umum">Umum</option>
-            </select>
-          </div>
           <div class="form-group">
             <label for="keluhan" class="form-control-label">keluhan</label>
             <textarea class="form-control" id="keluhan" name="keluhan"></textarea>
